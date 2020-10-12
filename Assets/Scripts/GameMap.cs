@@ -12,12 +12,11 @@ public class GameMap : MonoBehaviour
     [SerializeField] float offset = 1f;
     [SerializeField] Material pathPortalMaterial;
     [SerializeField] Material finalPortalMaterial;
-    GameObject startMinimap;
     Game game;
 
     GameObject[,] minimaps;
 
-    public GameObject StartMinimap { get => startMinimap; set => startMinimap = value; }
+    public GameObject StartMinimap { get; set; }
 
     void Start()
     {
@@ -27,8 +26,8 @@ public class GameMap : MonoBehaviour
         minimaps = new GameObject[width, height];
         GenerateMap();
         StartMinimap = minimaps[Random.Range(0, width), Random.Range(0, height)];
-        FindObjectOfType<Player>().MoveToPosition(startMinimap.transform.position);
-        Camera.main.transform.position = new Vector3(startMinimap.transform.position.x, startMinimap.transform.position.y, -10);
+        FindObjectOfType<Player>().MoveToPosition(StartMinimap.transform.position);
+        Camera.main.transform.position = new Vector3(StartMinimap.transform.position.x, StartMinimap.transform.position.y, Camera.main.transform.position.z);
         LinkPortals();
     }
 
@@ -46,16 +45,13 @@ public class GameMap : MonoBehaviour
 
     private void LinkPortals()
     {
-        // Último mapa deve referenciar o primeiro;
-
         SetAllPortalsDestinationToStart();
         CreateValidPath();
-
     }
 
     private void CreateValidPath()
     {
-        Minimap minimap = startMinimap.GetComponent<Minimap>();
+        Minimap minimap = StartMinimap.GetComponent<Minimap>();
         minimap.IsRefenced = true;
         Portal currPortal;
         for (int i = 0; i < (width * height) - 1; i++)
@@ -133,10 +129,10 @@ public class GameMap : MonoBehaviour
             for (int j = 0; j < height; j++)
             {
                 Minimap minimap = minimaps[i, j].GetComponent<Minimap>();
-                minimap.PortalUp.Destination = startMinimap.GetComponent<Minimap>();
-                minimap.PortalDown.Destination = startMinimap.GetComponent<Minimap>();
-                minimap.PortalLeft.Destination = startMinimap.GetComponent<Minimap>();
-                minimap.PortalRight.Destination = startMinimap.GetComponent<Minimap>();
+                minimap.PortalUp.Destination = StartMinimap.GetComponent<Minimap>();
+                minimap.PortalDown.Destination = StartMinimap.GetComponent<Minimap>();
+                minimap.PortalLeft.Destination = StartMinimap.GetComponent<Minimap>();
+                minimap.PortalRight.Destination = StartMinimap.GetComponent<Minimap>();
             }
         }
     }

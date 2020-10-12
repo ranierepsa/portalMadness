@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] PortalTriggeredEvent portalTriggeredEvent;
     [SerializeField] float moveSpeed = 10f;
-    float zPos = -0.2f;
 
     void FixedUpdate()
     {
@@ -17,6 +17,21 @@ public class Player : MonoBehaviour
 
     public void MoveToPosition(Vector2 position)
     {
-        transform.position = new Vector3(position.x, position.y, zPos);
+        transform.position = new Vector3(position.x, position.y, transform.position.z);
+    }
+
+    public void MoveToPosition(Vector2 position, bool isPath)
+    {
+        MoveToPosition(position);
+    }
+
+    public void OnEnable()
+    {
+        portalTriggeredEvent.Subscribe(MoveToPosition);
+    }
+
+    public void OnDisable()
+    {
+        portalTriggeredEvent.Unsubscribe(MoveToPosition);
     }
 }

@@ -82,7 +82,7 @@ MonoBehaviour:
   portalDown: {fileID: 5717328345262413650}
   portalLeft: {fileID: 5717328345584787694}
   portalRight: {fileID: 2518838468505550359}
-  spawnLocation: {x: 0, y: 0, z: 0}
+  spawnLocation: {x: 0, y: 0}
 --- !u!1001 &384580120291428022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -225,6 +225,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: Portals
       objectReference: {fileID: 0}
+    - target: {fileID: 1195134142205364412, guid: 888f17072ea64754fae50a56f6d345c3,
+        type: 3}
+      propertyPath: portalTriggerEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: d18157767ebc0bc42a77fc70762d4d83,
+        type: 2}
+    - target: {fileID: 1195134142395629312, guid: 888f17072ea64754fae50a56f6d345c3,
+        type: 3}
+      propertyPath: portalTriggerEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: d18157767ebc0bc42a77fc70762d4d83,
+        type: 2}
+    - target: {fileID: 1195134143888912787, guid: 888f17072ea64754fae50a56f6d345c3,
+        type: 3}
+      propertyPath: portalTriggerEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: d18157767ebc0bc42a77fc70762d4d83,
+        type: 2}
     - target: {fileID: 2047028329367854708, guid: 888f17072ea64754fae50a56f6d345c3,
         type: 3}
       propertyPath: m_Name
@@ -245,6 +263,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Portal Right
       objectReference: {fileID: 0}
+    - target: {fileID: 9023324421412643321, guid: 888f17072ea64754fae50a56f6d345c3,
+        type: 3}
+      propertyPath: portalTriggerEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: d18157767ebc0bc42a77fc70762d4d83,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 888f17072ea64754fae50a56f6d345c3, type: 3}
 --- !u!4 &6246766355721831968 stripped

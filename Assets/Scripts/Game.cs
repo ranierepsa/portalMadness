@@ -5,11 +5,8 @@ using UnityEngine.UI;
 
 public class Game : MonoBehaviour
 {
-    int mapSize = 3;
-    bool isEasyMode = false;
-
-    public int MapSize { get => mapSize; set => mapSize = value; }
-    public bool IsEasyMode { get => isEasyMode; set => isEasyMode = value; }
+    public int MapSize { get; set; } = 2;
+    public bool IsEasyMode { get; set; } = false;
 
     private void Awake()
     {

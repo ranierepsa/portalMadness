@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip rightPortalClip;
     [SerializeField] AudioClip wrongPortalClip;
     [SerializeField] AudioClip victoryClip;
+    [SerializeField] PortalTriggeredEvent portalTriggeredEvent;
     AudioSource audioSource;
 
     void Awake()
@@ -23,9 +24,24 @@ public class AudioManager : MonoBehaviour
         audioSource.Play();
     }
 
+    private void PlayPortalSound(Vector2 destLocation, bool isPath)
+    {
+        PlayPortalSound(isPath);
+    }
+
     public void PlayVictorySound()
     {
         audioSource.clip = victoryClip;
         audioSource.Play();
+    }
+
+    private void OnEnable()
+    {
+        portalTriggeredEvent?.Subscribe(PlayPortalSound);
+    }
+
+    private void OnDisable()
+    {
+        portalTriggeredEvent?.Unsubscribe(PlayPortalSound);
     }
 }

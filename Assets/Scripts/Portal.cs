@@ -1,28 +1,29 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
-    [SerializeField] Minimap destination;
-    bool isPath = false;
-    bool isFinal = false;
+    [SerializeField] PortalTriggeredEvent portalTriggerEvent;
 
-    public Minimap Destination { get => destination; set => destination = value; }
-    public bool IsFinal { get => isFinal; set => isFinal = value; }
-    public bool IsPath { get => isPath; set => isPath = value; }
+    public Minimap Destination { get; set; }
+    public bool IsFinal { get; set; } = false;
+    public bool IsPath { get; set; } = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //TODO: Create an event
         if (!IsFinal)
         {
-            collision.gameObject.GetComponent<Player>().MoveToPosition(destination.SpawnLocation);
-            Camera.main.transform.position = new Vector3(destination.SpawnLocation.x, destination.SpawnLocation.y, -10);
-            FindObjectOfType<AudioManager>().PlayPortalSound(IsPath || isFinal);
+            TeleportCollisorToDestination();
         } else
         {
             FindObjectOfType<SceneLoader>().LoadGameOver();
         }
+    }
+
+    private void TeleportCollisorToDestination()
+    {
+        portalTriggerEvent.Trigger(Destination.SpawnLocation, IsPath);
     }
 }
